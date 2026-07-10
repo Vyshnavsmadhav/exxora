@@ -126,16 +126,26 @@ export default function Home() {
 
       {/* Content Areas */}
       <section style={styles.contentSection}>
-        {activeTab === "wearables" ? (
+        {activeTab === "wearables" || activeTab === "ai-glasses" ? (
           <div style={styles.productsContainer}>
             <div style={styles.sectionHeader}>
-              <h2 style={styles.sectionTitle}>THE COLLECTION</h2>
-              <p style={styles.sectionSubtitle}>Selected bespoke finishes and specifications</p>
+              <h2 style={styles.sectionTitle}>
+                {activeTab === "ai-glasses" ? "AI GLASSES" : "THE COLLECTION"}
+              </h2>
+              <p style={styles.sectionSubtitle}>
+                {activeTab === "ai-glasses" 
+                  ? "Heads-up navigation and biometric eye-tracking" 
+                  : "Selected bespoke finishes and specifications"}
+              </p>
             </div>
             <div style={styles.productsGrid}>
-              {products.map((product) => (
-                <ProductCard key={product.id} product={product} onAddToCart={handleAddToCart} />
-              ))}
+              {products
+                .filter((p) => activeTab === "wearables" || p.id === "aetheris-eyewear")
+                .map((product) => (
+                  <div key={product.id} id={product.id}>
+                    <ProductCard product={product} onAddToCart={handleAddToCart} />
+                  </div>
+                ))}
             </div>
           </div>
         ) : (

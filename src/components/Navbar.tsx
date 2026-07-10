@@ -49,7 +49,7 @@ export default function Navbar({ cartCount, onCartClick, activeTab, setActiveTab
             <Home size={14} strokeWidth={1.5} />
             HOME
           </button>
-          {["wearables", "telemetry"].map((tab) => (
+          {["wearables", "ai-glasses", "telemetry"].map((tab) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
@@ -59,7 +59,7 @@ export default function Navbar({ cartCount, onCartClick, activeTab, setActiveTab
                 borderBottom: activeTab === tab ? "1px solid var(--color-primary)" : "none",
               }}
             >
-              {tab.toUpperCase()}
+              {tab.replace("-", " ").toUpperCase()}
             </button>
           ))}
         </nav>
