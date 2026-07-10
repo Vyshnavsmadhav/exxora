@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { ShoppingBag, Radio } from "lucide-react";
+import { ShoppingBag, Radio, Home } from "lucide-react";
 
 interface NavbarProps {
   cartCount: number;
@@ -15,7 +15,19 @@ export default function Navbar({ cartCount, onCartClick, activeTab, setActiveTab
     <header style={styles.header} className="glass-panel-elevated">
       <div style={styles.container}>
         <div style={styles.logoGroup}>
-          <span style={styles.logo}>STITCH LUXE</span>
+          <button
+            onClick={() => setActiveTab("wearables")}
+            style={{
+              background: "none",
+              border: "none",
+              cursor: "pointer",
+              padding: 0,
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
+            <span style={styles.logo}>STITCH LUXE</span>
+          </button>
           <div style={styles.statusBadge}>
             <div className="status-pulse-dot" />
             <span style={styles.statusText}>OS-CONNECT v2.4</span>
@@ -23,6 +35,20 @@ export default function Navbar({ cartCount, onCartClick, activeTab, setActiveTab
         </div>
 
         <nav style={styles.nav}>
+          <button
+            onClick={() => setActiveTab("wearables")}
+            style={{
+              ...styles.navLink,
+              color: activeTab === "wearables" ? "var(--color-primary)" : "var(--color-outline)",
+              borderBottom: activeTab === "wearables" ? "1px solid var(--color-primary)" : "none",
+              display: "flex",
+              alignItems: "center",
+              gap: "6px",
+            }}
+          >
+            <Home size={14} strokeWidth={1.5} />
+            HOME
+          </button>
           {["wearables", "telemetry"].map((tab) => (
             <button
               key={tab}
